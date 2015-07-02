@@ -1,0 +1,95 @@
+<?xml version="1.0" ?> 
+<project name="AntBuildDemo" default="ear" basedir=".">
+	
+  <description>
+        simple example build file
+  </description>
+  <!-- set global properties for this build -->
+  <property name="src" location="./AppSecDemo/src"/>
+  <property name="build" location="./build"/>
+  <property name="dist"  location="./dist"/>
+  <property name="was_home" value="/opt/IBM/WebSphere/AppServer" />
+  <property name="build.sysclasspath" value="last"/>
+  
+	
+	<target name="linux" depends="dir.check" if="dir.exists">
+		<echo>WAS_HOME "${was_home}" exists</echo>
+	</target>
+
+	<target name="windows" depends="dir.check" unless="dir.exists">
+		<echo>WAS_HOME "${was_home}" missing</echo>
+		<propertyreset name="was_home" value="C:/Program Files (x86)/IBM/SDP/runtimes/base_v7"/>
+		<echo>New WAS_HOME: ${was_home}</echo>
+	</target>
+
+	<!-- checking was_home directory for this build -->
+	<target name="dir.check">
+		<echo>Checking WAS_HOME directory...</echo>
+		<condition property="dir.exists">
+			<available file="${was_home}" type="dir"/>
+		</condition>
+	</target>	
+	
+	<!-- clean previous build artifacts -->
+	<target name="clean" depends="linux, windows">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>
+	
+	<!-- creating folders for this build -->
+	<target name="init" depends="clean">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="dist" />
+	</target>
+	
+	<!-- compiling Java source codes -->
+	<target name="compile" depends="init" >
+		<javac destdir="build/classes" debug="true" srcdir="./AppSecDemo/src" target="1.6">
+			<classpath>
+				<path id="compile.classpath">
+					<fileset dir="./AppSecDemo/WebContent/WEB-INF/lib">
+						<include name="*.jar"/>
+					</fileset>
+					<fileset dir="${was_home}/lib">
+						<include name="*.jar"/>
+					</fileset>
+				</path>	
+			</classpath>
+		</javac>
+	</target>
+	
+	<!-- building .war file for this build -->
+	<target name="war" depends="compile">
+		<war destfile="dist/AppSecDemo.war" webxml="./AppSecDemo/WebContent/WEB-INF/web.xml">
+			<fileset dir="./AppSecDemo/WebContent">
+				<include name="**/*.jsp"/>
+				<include name="*.html"/>				
+				<include name="**/*.png"/>
+				<include name="**/*.xml"/>
+				<exclude name="**/*.jar"/>
+			</fileset>
+			<lib dir="./AppSecDemo/WebContent/WEB-INF/lib"/>
+			<classes dir="build/classes"/>
+		</war>
+	</target>
+	
+	<!-- building .ear file for this build -->
+	<target name="ear" depends="war">
+		<ear destfile="dist/AppSecDemoEAR.ear" appxml="./AppSecDemoEAR/META-INF/application.xml">
+	      <fileset dir="dist" includes="*.war"/>
+		  <fileset dir="./AppSecDemoEAR">
+				<include name="**/*.xml" />
+				<exclude name=".settings/" />
+		  </fileset>
+	    </ear>
+	</target>	
+	
+	<!-- JavaScript function to set new property value -->
+	<scriptdef name="propertyreset" language="javascript"
+		description="Allows to assign @{property} new value">
+		<attribute name="name"/>
+		<attribute name="value"/>
+        project.setProperty(attributes.get("name"), attributes.get("value"));
+	</scriptdef>
+	
+</project>

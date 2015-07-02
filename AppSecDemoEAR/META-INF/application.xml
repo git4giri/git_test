@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+	<display-name>AppSecDemoEAR</display-name>
+	<module id="Module_1434463065900">
+		<web>
+			<web-uri>AppSecDemo.war</web-uri>
+			<context-root>appsecdemo</context-root>
+		</web>
+	</module>
+	<security-role>
+		<role-name>public</role-name>
+	</security-role>
+	<security-role>
+		<role-name>admin</role-name>
+	</security-role>
+	<security-role>
+		<role-name>system-admin</role-name>
+	</security-role>
+	<security-role>
+		<role-name>user-admin</role-name>
+	</security-role>
+</application>
