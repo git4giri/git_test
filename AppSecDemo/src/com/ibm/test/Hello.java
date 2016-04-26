@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Hello extends HttpServlet implements Servlet{
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp){
-		PrintWriter out;
+		PrintWriter out;//add comment
 		try {
 			out = resp.getWriter();
 			out.println("Hi There!");
