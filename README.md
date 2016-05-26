@@ -1,5 +1,5 @@
 # Hygieia Dashboard Setup Notes
-```
+```javascript
 Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in Somerslab environment.
 ```
 
