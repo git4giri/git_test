@@ -9,7 +9,6 @@
  - To check mongoDB host and port no.  
  connect to mongoDB => just type mongo and hit enter in console  
 then type db.serverCmdLineOpts() and hit enter  You’ll get response like following…  
-```
 {  
 "argv": [ "/usr/bin/mongod", "-f", "/etc/mongod.conf" ],  
 "parsed": { "config": "/etc/mongod.conf", "net": `{ "bindIp": "127.0.0.1", "port": 27017 }`,  
@@ -18,7 +17,7 @@ then type db.serverCmdLineOpts() and hit enter  You’ll get response like follo
 "systemLog": { "destination": "file", "logAppend": true, "path": "/var/log/mongodb/mongod.log" } },  
 "ok": 1  
 }
-```
+
 
 This README.md file is displayed on your project page. You should edit this 
 file to describe your project, including instructions for building and 
