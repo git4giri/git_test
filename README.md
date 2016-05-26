@@ -8,7 +8,7 @@
  4. The UI module should start with admin/root mode. Before starting any of Hygieia modules make sure that the MongoDB is running.
  5. To check mongoDB host and port no.  
  connect to mongoDB => just type mongo and hit enter in console  
-then type db.serverCmdLineOpts() and hit enter  You’ll get response like following…  
+then type db.serverCmdLineOpts() and hit enter  You’ll get response like following…   
 ```json
 {
   "argv": [ "/usr/bin/mongod", "-f", "/etc/mongod.conf" ],
@@ -23,7 +23,18 @@ then type db.serverCmdLineOpts() and hit enter  You’ll get response like follo
 }
 ```  
 >So, here host is 127.0.0.1 and port no is 27017, if it's not specified at all then everything is default.  
-`Default host is localhost/127.0.0.1 and port no is 27017.`   
+`Default host is localhost/127.0.0.1 and port no is 27017.`
+6.	Create User with Roles in mongoDB
+```sh
+> use dashboarddb
+switched to db dashboarddb
+> db.createUser({
+... user: "admin",
+... pwd: "w3bmast3r",
+... roles: ["readWrite", "dbAdmin"]
+... })
+Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
+```  
 6.	Create User with Roles in mongoDB
 ```sh
 > use dashboarddb
