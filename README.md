@@ -34,17 +34,6 @@ switched to db dashboarddb
 ... roles: ["readWrite", "dbAdmin"]
 ... })
 Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
-```  
-6.	Create User with Roles in mongoDB
-```sh
-> use dashboarddb
-switched to db dashboarddb
-> db.createUser({
-... user: "admin",
-... pwd: "w3bmast3r",
-... roles: ["readWrite", "dbAdmin"]
-... })
-Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
 ```
 
 This README.md file is displayed on your project page. You should edit this 
