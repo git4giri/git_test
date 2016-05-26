@@ -117,7 +117,7 @@ Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" 
            e.g. hygieia stop api
     7. To stop all module, run this command  
         `hygieia stop all`
-    8. To clear old logs run following command, it’ll delete all logs older than two days.
+    8. To clear old logs run following command, it’ll delete all logs older than two days.  
         `hygieia clear logs`
 
 
