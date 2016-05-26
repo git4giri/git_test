@@ -74,9 +74,51 @@ Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" 
 * Use Jira Base64-encoded username:password as value of feature.jiraCredential and OAuth 2.0 is not enabled in Jira feature collector yet. So keep related fields commented.
 * Various Hygieia collectors may fail to communicate with the respective servers due to SSL handshake error caused by unrecognized SSL certificate. SSL Certificate from respective servers can be imported into default trust store of JRE used to launch the collectors.
 >In our case, we have installed following SSL certificates in esl022.somerslab server JRE  
- > - Jira SSL certificate from ‘https://studio.somerslab.ibm.com/jira’     
- > - Enterprise GitHub SSL certificate from ‘https://github.ibm.com/’   
- > - Jenkins SSL certificate from ‘https://esl035.somerslab.ibm.com/jenkins/’
+  Jira SSL certificate from ‘https://studio.somerslab.ibm.com/jira’     
+  Enterprise GitHub SSL certificate from ‘https://github.ibm.com/’   
+  Jenkins SSL certificate from ‘https://esl035.somerslab.ibm.com/jenkins/’
+
+* In the configuration file the issue status mappings must be completed corresponding to respective Jira instance. You can find all available issue status mappings by going to your instance's version of the following API call; Your statuses are listed in the JSON response as "name."  
+     `https://[your-jira-domain-name]/jira/rest/api/2/status`  
+	Currently, Hygieia only maps to the following 3 status mappings:  to do, doing, and done. So you need to specify which statuses you want put in which category. 
+>In our case it’s like…  
+   feature.todoStatuses[0]=Open  
+   feature.todoStatuses[1]=New  
+   feature.todoStatuses[2]=Backlog  
+   feature.todoStatuses[3]=Reopened  
+   feature.todoStatuses[4]=To Do  
+   feature.doingStatuses[0]=In Progress  
+   feature.doingStatuses[1]=Blocked  
+   feature.doingStatuses[2]=In Development  
+   feature.doneStatuses[0]=Done  
+   feature.doneStatuses[1]=Completed  
+   feature.doneStatuses[2]=Resolved  
+   feature.doneStatuses[3]=Complete  
+   feature.doneStatuses[4]=Closed  
+
+* We have modified the Hygieia REST API source to show all Jira issue count instead of estimated size and to show all in-progress stories with the story-point instead of epics.  
+	- modified class:
+		- FeatureServiceImpl
+	- modified methods: 
+    	- getFeatureEstimates(ObjectId componentId, String teamId)
+    	- getEstimate(ObjectId componentId, String teamId, Status status)
+
+22.	We have created a shell script to run our Hygieia instance in esl022 Somers-lab server. Here are some useful notes related to the script.
+	1. Login into esl022.somerslab.ibm.com server with sudo/root access.
+	2. There are three main commands e.g. start, stop and clear.
+	3. In Hygieia we have eight modules, in script we named them like `api, ui, jira, github, stash, jenkins, ucd and sonar`.
+	4. To start particular module, follow this command  
+        `hygieia start <module-name>`  
+           e.g. hygieia start api  
+    5. To start all module, follow this command  
+        `hygieia start all`
+    6. To stop particular module, run this command  
+        `hygieia stop <module-name>`  
+           e.g. hygieia stop api
+    7. To stop all module, run this command  
+        `hygieia stop all`
+    8. To clear old logs run following command, it’ll delete all logs older than two days.
+        `hygieia clear logs`
 
 
 
