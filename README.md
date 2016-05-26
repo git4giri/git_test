@@ -6,11 +6,8 @@
  - Other than bower and gulp it requires Git client to build the UI module.
  - A MongoDb database should be created with authentication enabled before starting any of the collectors or API.
  - The UI module should start with admin/root mode. Before starting any of Hygieia modules make sure that the MongoDB is running.
-  5. To check mongoDB host and port no.  
- connect to mongoDB => just type mongo and hit enter in console  
-then type db.serverCmdLineOpts() and hit enter  
-You’ll get response like following…
- ```{
+ - To check mongoDB host and port no.  
+ connect to mongoDB => just type mongo and hit enter in console  then type db.serverCmdLineOpts() and hit enter  You’ll get response like following…  ```{
       "argv": [ "/usr/bin/mongod", "-f", "/etc/mongod.conf" ],
       "parsed": { "config": "/etc/mongod.conf", "net": { "bindIp": "127.0.0.1", "port": 27017 },
           "processManagement": { "fork": true, "pidFilePath": "/var/run/mongodb/mongod.pid" },
@@ -18,6 +15,7 @@ You’ll get response like following…
           "systemLog": { "destination": "file", "logAppend": true, "path": "/var/log/mongodb/mongod.log" } },
        "ok": 1
   }```
+
 This README.md file is displayed on your project page. You should edit this 
 file to describe your project, including instructions for building and 
 running the project, pointers to the license under which you are making the 
