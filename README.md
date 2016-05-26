@@ -1,7 +1,5 @@
 # Hygieia Dashboard Setup Notes
-```javascript
-Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in Somerslab environment.
-```
+`Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in Somerslab environment.'
 
 
 This README.md file is displayed on your project page. You should edit this 
