@@ -2,14 +2,14 @@
 
 >Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in `Somerslab` environment.
 
- 1. Current version of Hygieia-2.0 requires *JDK-1.8* and *Maven-3.2.5* to compile and build from source.
- 2. Other than bower and gulp it requires Git client to build the UI module.
- 3. A MongoDb database should be created with authentication enabled before starting any of the collectors or API.
- 4. The UI module should start with admin/root mode. Before starting any of Hygieia modules make sure that the MongoDB is running.
- 5. To check mongoDB host and port no.  
+ * Current version of Hygieia-2.0 requires *JDK-1.8* and *Maven-3.2.5* to compile and build from source.
+ * Other than bower and gulp it requires Git client to build the UI module.
+ * A MongoDb database should be created with authentication enabled before starting any of the collectors or API.
+ * The UI module should start with admin/root mode. Before starting any of Hygieia modules make sure that the MongoDB is running.
+ * To check mongoDB host and port no.  
  connect to mongoDB => just type mongo and hit enter in console  
 then type db.serverCmdLineOpts() and hit enter  You’ll get response like following…   
-```json
+```
 {
   "argv": [ "/usr/bin/mongod", "-f", "/etc/mongod.conf" ],
   "parsed": {
@@ -24,8 +24,9 @@ then type db.serverCmdLineOpts() and hit enter  You’ll get response like follo
 ```  
 >So, here host is 127.0.0.1 and port no is 27017, if it's not specified at all then everything is default.  
 `Default host is localhost/127.0.0.1 and port no is 27017.`
-6.	Create User with Roles in mongoDB
-```sh
+
+* Create User with Roles in mongoDB
+```
 > use dashboarddb
 switched to db dashboarddb
 > db.createUser({
@@ -35,13 +36,17 @@ switched to db dashboarddb
 ... })
 Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
 ```
-7.	Create / use a Jenkins API key with access to all jobs for connecting Jenkins job collector.
-
-8.	The GitHub collector not able to fetch commit info from private repository in GitHub, as there is no option to provide the access credentials to the collector. So we have modified source of github-scm-collector package so that we can specify the access token in the configuration file to access all private repository. 
+Create / use a Jenkins API key with access to all jobs for connecting Jenkins job collector.
+*	The GitHub collector not able to fetch commit info from private repository in GitHub, as there is no 
+option to provide the access credentials to the collector. So we have modified source of github-scm-collector package 
+so that we can specify the access token in the configuration file to access all private repository. 
 	- modified class:- DefaultGitHubClient  
 	- modified methods:- getCommits(GitHubRepo repo, boolean firstRun)
-9.	Create a personal access token in GitHub to access all GitHub projects.  Login with the corresponding GitHub user and goto  GitHub -> Settings -> Personal access tokens -> Generate new token. Use this token in dashboard.properties as github.key To get commit details of any private GitHub project just need to add this user to the project as collaborator.
-10.	
+*	Create a personal access token in GitHub to access all GitHub projects.  
+Login with the corresponding GitHub user and goto  
+GitHub -> Settings -> Personal access tokens -> Generate new token. 
+Use this token in dashboard.properties as `github.key`  
+To get commit details of any private GitHub project just need to add this user to the project as collaborator.
 
 
 
