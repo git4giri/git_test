@@ -23,9 +23,8 @@ then type db.serverCmdLineOpts() and hit enter  You’ll get response like follo
 }
 ```  
 >So, here host is 127.0.0.1 and port no is 27017, if it's not specified at all then everything is default.  
->`Default host is localhost/127.0.0.1 and port no is 27017.`  
-
-Create User with Roles in mongoDB
+`Default host is localhost/127.0.0.1 and port no is 27017.`  
+6. Create User with Roles in mongoDB
 ```sh
 > use dashboarddb
 switched to db dashboarddb
@@ -35,7 +34,15 @@ switched to db dashboarddb
 ... roles: ["readWrite", "dbAdmin"]
 ... })
 Successfully added user: { "user" : "admin", "roles" : [ "readWrite", "dbAdmin" ] }
-```
+```  
+7.	Create / use a Jenkins API key with access to all jobs for connecting Jenkins job collector.  
+8.	The GitHub collector not able to fetch commit info from private repository in GitHub, as there is no option to provide the access credentials to the collector. So we have modified source of github-scm-collector package so that we can specify the access token in the configuration file to access all private repository. 
+modified class:
+            DefaultGitHubClient
+modified methods:
+            getCommits(GitHubRepo repo, boolean firstRun)
+
+
 
 This README.md file is displayed on your project page. You should edit this 
 file to describe your project, including instructions for building and 
