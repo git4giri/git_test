@@ -2,6 +2,10 @@
 
 >Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in `Somerslab` environment.
 
+ - Current version of Hygieia-2.0 requires JDK-1.8 and Maven-3.2.5 to compile and build from source.
+ - Other than bower and gulp it requires Git client to build the UI module.
+ - A MongoDb database should be created with authentication enabled before starting any of the collectors or API.
+ - The UI module should start with admin/root mode. Before starting any of Hygieia modules make sure that the MongoDB is running.
 This README.md file is displayed on your project page. You should edit this 
 file to describe your project, including instructions for building and 
 running the project, pointers to the license under which you are making the 
