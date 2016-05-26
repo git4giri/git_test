@@ -24,7 +24,6 @@ then type db.serverCmdLineOpts() and hit enter  You’ll get response like follo
 ```
 So, here host is 127.0.0.1 and port no is 27017, if it's not specified at all then everything is default.  
 `Default host is localhost/127.0.0.1 and port no is 27017.`  
-
 6.	Create User with Roles in mongoDB
 ```sh
 > use dashboarddb
