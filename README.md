@@ -1,7 +1,6 @@
 # Hygieia Dashboard Setup Notes
-`Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in Somerslab environment.'
 
-`git fetch upstream`
+`Below listed are some important steps performed and lessons learnt during Hygieia dashboard configuration in Somerslab environment.`
 
 This README.md file is displayed on your project page. You should edit this 
 file to describe your project, including instructions for building and 
