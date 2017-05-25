@@ -8,7 +8,7 @@
   <property name="src" location="./AppSecDemo/src"/>
   <property name="build" location="./build"/>
   <property name="dist"  location="./dist"/>
-  <property name="was_home" value="/opt/IBM/WebSphere/AppServer" />
+  <property name="was_home" value="${was7.runtime}" />
   <property name="build.sysclasspath" value="last"/>
   
 	
